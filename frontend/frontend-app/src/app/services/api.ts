@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class Api {
-  private apiUrl = 'http://127.0.0.1:5000/api/clasificar';
+  private apiUrl = 'https://proyecto-equipo-predictivo.onrender.com/api/clasificar';
 
   constructor(private http: HttpClient) {}
 

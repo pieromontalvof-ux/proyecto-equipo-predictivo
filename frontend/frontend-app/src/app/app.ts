@@ -46,7 +46,7 @@ export class App {
     });
   }
 
-  getProbabilidades() {
-    return this.probs ? Object.entries(this.probs) : [];
+  getProbabilidades(): [string, number][] {
+    return this.probs ? Object.entries(this.probs) as [string, number][] : [];
   }
 }

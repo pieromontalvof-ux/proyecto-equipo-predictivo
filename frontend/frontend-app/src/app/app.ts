@@ -13,6 +13,7 @@ export class App {
   imagenPreview: string = '';
   resultado: string = '';
   probs: any = null;
+  graphUrl: string = '';
 
   constructor(private api: Api) {}
 
@@ -20,6 +21,7 @@ export class App {
     this.selectedFile = event.target.files[0];
     this.resultado = '';
     this.probs = null;
+    this.graphUrl = '';
 
     if (this.selectedFile) {
       this.imagenPreview = URL.createObjectURL(this.selectedFile);
@@ -39,6 +41,7 @@ export class App {
       next: (res: any) => {
         this.resultado = res.prediction;
         this.probs = res.probs;
+        this.graphUrl = `https://proyecto-equipo-predictivo.onrender.com/static/uploads/probabilidades.png?t=${new Date().getTime()}`;
       },
       error: () => {
         this.resultado = 'Error al conectar con Flask';

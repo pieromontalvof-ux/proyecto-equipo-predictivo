@@ -3,3 +3,4 @@ keras==2.15.0
 ml_dtypes==0.2.0
 tensorflow_cpu==2.15.0
 numpy==1.26.4
+gunicorn==21.2.0

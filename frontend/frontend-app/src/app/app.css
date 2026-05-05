@@ -131,33 +131,3 @@ th {
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-.vertical-chart {
-  height: 260px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-around;
-  gap: 15px;
-  padding: 20px;
-  border: 1px solid #ccc;
-}
-
-.chart-item {
-  width: 90px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.bar-column {
-  height: 180px;
-  width: 45px;
-  background: #f1f5f9;
-  display: flex;
-  align-items: flex-end;
-}
-
-.bar-vertical {
-  width: 100%;
-  background: skyblue;
-}

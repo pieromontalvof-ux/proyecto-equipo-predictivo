@@ -22,10 +22,18 @@
     </section>
 
     <section class="right" *ngIf="probs">
-      <div class="card" *ngIf="graphUrl">
+      <div class="card">
         <h2>Gráfico de Probabilidades</h2>
-        <img [src]="graphUrl" alt="Gráfico de probabilidades" class="chart-img">
-      </div>
+
+        <div class="vertical-chart">
+        <div class="chart-item" *ngFor="let item of getProbabilidades()">
+            <div class="bar-column">
+            <div class="bar-vertical" [style.height.%]="item[1] * 100"></div>
+            </div>
+            <span>{{ item[0] }}</span>
+            <strong>{{ (item[1] * 100).toFixed(2) }}%</strong>
+        </div>
+        </div>
 
       <div class="card">
         <h2>Detalles por Clase</h2>

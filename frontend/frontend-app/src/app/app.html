@@ -1,9 +1,57 @@
-<h1>Clasificador de Tumores Cerebrales</h1>
+<div class="app">
+  <header>
+    <h1>Clasificador de Tumores Cerebrales</h1>
 
-<input type="file" accept="image/*" (change)="onFileSelected($event)">
+    <div class="formulario">
+      <input type="file" accept="image/*" (change)="onFileSelected($event)">
+      <button (click)="subirImagen()">Clasificar Imagen</button>
+    </div>
+  </header>
 
-<br><br>
+  <main class="content">
+    <section class="left">
+      <div class="card" *ngIf="imagenPreview">
+        <h2>Imagen Analizada</h2>
+        <img [src]="imagenPreview" alt="MRI" class="preview-img">
+      </div>
 
-<button (click)="subirImagen()">Clasificar imagen</button>
+      <div class="card result-card" *ngIf="resultado">
+        <h2>Resultado</h2>
+        <p class="prediction">{{ resultado }}</p>
+      </div>
+    </section>
 
-<p *ngIf="resultado">{{ resultado }}</p>
+    <section class="right" *ngIf="probs">
+      <div class="card">
+        <h2>Gráfico de Probabilidades</h2>
+
+        <div class="bar-container" *ngFor="let item of getProbabilidades()">
+          <span>{{ item[0] }}</span>
+          <div class="bar-bg">
+            <div class="bar" [style.width.%]="item[1] * 100"></div>
+          </div>
+          <strong>{{ (item[1] * 100).toFixed(2) }}%</strong>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Detalles por Clase</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Clase</th>
+              <th>Probabilidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of getProbabilidades()">
+              <td>{{ item[0] }}</td>
+              <td>{{ (item[1] * 100).toFixed(2) }}%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>

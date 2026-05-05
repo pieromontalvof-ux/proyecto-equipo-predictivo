@@ -10,12 +10,20 @@ import { Api } from './services/api';
 })
 export class App {
   selectedFile: File | null = null;
+  imagenPreview: string = '';
   resultado: string = '';
+  probs: any = null;
 
   constructor(private api: Api) {}
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
+    this.resultado = '';
+    this.probs = null;
+
+    if (this.selectedFile) {
+      this.imagenPreview = URL.createObjectURL(this.selectedFile);
+    }
   }
 
   subirImagen() {
@@ -30,10 +38,15 @@ export class App {
     this.api.clasificarImagen(formData).subscribe({
       next: (res: any) => {
         this.resultado = res.prediction;
+        this.probs = res.probs;
       },
       error: () => {
         this.resultado = 'Error al conectar con Flask';
       }
     });
+  }
+
+  getProbabilidades() {
+    return this.probs ? Object.entries(this.probs) : [];
   }
 }
